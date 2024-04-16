@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import './styledComponents.js';
+import { useState } from 'react';
+import { MainContainer , Button  } from './styledComponents.js';
+import Clock from './components/Clock';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = ()=>{
+  const [isMounted , setIsMounted] = useState(true)
+
+  const onToggle = ()=>{
+    setIsMounted(isMounted => !isMounted)
+  }
+  return(
+    <>
+      <MainContainer>
+        <Button onClick={onToggle}> {isMounted ? "Hide Clock" : "Show Clock"} </Button>
+        {isMounted && <Clock /> }
+      </MainContainer>
+    </>
+  )
 }
-
 export default App;
